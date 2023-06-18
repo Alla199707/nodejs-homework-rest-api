@@ -6,9 +6,8 @@ const {
 } = require("../../middlewares");
 
 const {
-  contactSchema,
-  updateFavoriteSchema,
-} = require("../../schemas/contacts");
+  schemas,
+} = require("../../models/contacts");
 
 const {
   listContacts,
@@ -31,7 +30,7 @@ router.get(
 
 router.post(
   "/",
-  validateBody(contactSchema),
+  validateBody(schemas.addSchema),
   addContact
 );
 
@@ -44,14 +43,14 @@ router.delete(
 router.put(
   "/:contactId",
   isValidId,
-  validateBody(contactSchema),
+  validateBody(schemas.addSchema),
   updateContact
 );
 
 router.patch(
   "/:contactId/favorite",
   isValidId,
-  validateBody(updateFavoriteSchema),
+  validateBody(schemas.updateFavoriteSchema),
   updateStatusContact
 );
 
