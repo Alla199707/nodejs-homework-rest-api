@@ -6,7 +6,10 @@ const validateBody = (schema) => {
       !req.body ||
       Object.keys(req.body).length === 0
     ) {
-      throw httpError(400, "missing fields");
+      throw httpError(
+        400,
+        "missing field favorite"
+      );
     }
 
     const { error } = schema.validate(req.body);
