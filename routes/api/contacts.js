@@ -3,6 +3,7 @@ const express = require("express");
 const {
   validateBody,
   isValidId,
+  validateFavorite,
 } = require("../../middlewares");
 
 const {
@@ -50,6 +51,7 @@ router.put(
 router.patch(
   "/:contactId/favorite",
   isValidId,
+  validateFavorite,
   validateBody(schemas.updateFavoriteSchema),
   updateStatusContact
 );
