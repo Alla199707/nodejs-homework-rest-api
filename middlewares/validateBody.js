@@ -6,18 +6,20 @@ const validateBody = (schema) => {
       !req.body ||
       Object.keys(req.body).length === 0
     ) {
-      throw httpError(400, "missing fields");
+      throw httpError(400, "missing field");
     }
 
     const { error } = schema.validate(req.body);
-
     if (error) {
-      next(httpError(400, error.message));
+      next(
+        httpError(
+          400,
+          `${error.details[0].message}`
+        )
+      );
     }
-
     next();
   };
-
   return func;
 };
 
