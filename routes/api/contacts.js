@@ -10,14 +10,25 @@ const {
   schemas,
 } = require("../../models/contacts");
 
+// const {
+//   listContacts,
+//   getContactById,
+//   addContact,
+//   removeContact,
+//   updateContact,
+//   updateStatusContact,
+// } = require("../../controllers/contacts");
+
 const {
-  listContacts,
-  getContactById,
-  addContact,
-  removeContact,
-  updateContact,
-  updateStatusContact,
-} = require("../../controllers/contacts");
+  contacts: {
+    listContacts,
+    getContactById,
+    addContact,
+    removeContact,
+    updateContact,
+    updateStatusContact,
+  },
+} = require("../../controllers");
 
 const router = express.Router();
 
