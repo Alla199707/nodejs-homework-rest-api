@@ -4,25 +4,17 @@ const {
   handleMongooseError,
 } = require("../helpers");
 
-// const emailRegExp =
-//   /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
-
-// const passwordRegExp =
-//   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{6,}/;
-
 const userSchema = new Schema(
   {
     password: {
       type: String,
       required: [true, "Set password for user"],
-      //match: passwordRegExp,
       minLength: 6,
     },
     email: {
       type: String,
       required: [true, "Email is required"],
       unique: true,
-      ///match: emailRegExp,
     },
     subscription: {
       type: String,
