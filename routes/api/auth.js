@@ -7,19 +7,8 @@ const {
 const {
   UserModel: { schemasUser },
 } = require("../../models");
-
-// const {
-//   ctrlUsers,
-// } = require("../../controllers");
-
 const {
-  users: {
-    register,
-    login,
-    getCurrent,
-    logout,
-    updateSubscriptionUser,
-  },
+  ctrlUsers,
 } = require("../../controllers");
 
 const router = express.Router();
@@ -27,18 +16,26 @@ const router = express.Router();
 router.post(
   "/register",
   validateBody(schemasUser.registerSchema),
-  register
+  ctrlUsers.register
 );
 
 router.post(
   "/login",
   validateBody(schemasUser.loginSchema),
-  login
+  ctrlUsers.login
 );
 
-router.post("/logout", authenticate, logout);
+router.post(
+  "/logout",
+  authenticate,
+  ctrlUsers.logout
+);
 
-router.get("/current", authenticate, getCurrent);
+router.get(
+  "/current",
+  authenticate,
+  ctrlUsers.getCurrent
+);
 
 router.patch(
   "/:id/subscription",
@@ -47,7 +44,7 @@ router.patch(
   validateBody(
     schemasUser.updateSubscriptionSchema
   ),
-  updateSubscriptionUser
+  ctrlUsers.updateSubscriptionUser
 );
 
 module.exports = router;

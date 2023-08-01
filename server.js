@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
-const app = require("./app");
-const dotenv = require("dotenv");
-dotenv.config({ path: "./.env" });
+require("dotenv").config();
+const { MONGO_URL, PORT = 3000 } = process.env;
 
-const { MONGO_URL, PORT } = process.env;
+const app = require("./app");
+
+mongoose.set("strictQuery", true);
 
 mongoose
   .connect(MONGO_URL)

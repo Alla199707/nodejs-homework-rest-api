@@ -11,7 +11,6 @@ const {
 
 const register = async (req, res) => {
   const { email, password } = req.body;
-  console.log(password);
   const user = await User.findOne({ email });
   if (user) {
     throw httpError(409, "Email in use");

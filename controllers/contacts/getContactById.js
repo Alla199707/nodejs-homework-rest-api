@@ -2,20 +2,21 @@ const {
   httpError,
   ctrlWrapper,
 } = require("../../helpers");
-const { Contact } = require("../../models");
+const {
+  ContactModel: { Contact },
+} = require("../../models");
 
 const getContactById = async (req, res) => {
-  const { contactId } = req.params;
-
-  const result = await Contact.findById(
-    contactId
-  );
-
+  const { id } = req.params;
+  const result = await Contact.findById({
+    _id: id,
+  });
   if (!result) {
     throw httpError(404, "Not found");
   }
-
-  return res.json(result);
+  res.status(200).json(result);
 };
 
-module.exports = ctrlWrapper(getContactById);
+module.exports = {
+  getContactById: ctrlWrapper(getContactById),
+};

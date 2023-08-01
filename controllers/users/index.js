@@ -4,7 +4,7 @@ const { getCurrent } = require("./getCurrent");
 const { logout } = require("./logout");
 const {
   updateSubscriptionUser,
-} = require("./updateSubscription");
+} = require("./updateSubscriptionUser");
 
 module.exports = {
   register,

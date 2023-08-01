@@ -2,24 +2,26 @@ const {
   httpError,
   ctrlWrapper,
 } = require("../../helpers");
-const { Contact } = require("../../models");
+const {
+  ContactModel: { Contact },
+} = require("../../models");
 
 const updateStatusContact = async (req, res) => {
-  const { contactId } = req.params;
-
+  const { body, params } = req;
+  const { id } = params;
   const result = await Contact.findByIdAndUpdate(
-    contactId,
-    req.body,
-    {
-      new: true,
-    }
+    id,
+    body,
+    { new: true }
   );
-
   if (!result) {
     throw httpError(404, "Not found");
   }
-
-  return res.json(result);
+  res.status(200).json(result);
 };
 
-module.exports = ctrlWrapper(updateStatusContact);
+module.exports = {
+  updateStatusContact: ctrlWrapper(
+    updateStatusContact
+  ),
+};
