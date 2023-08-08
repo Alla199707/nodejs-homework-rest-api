@@ -4,6 +4,9 @@ const {
 } = require("../helpers");
 const Joi = require("joi");
 
+const phoneRegExp =
+  /^\(\d\d\d\) \d\d\d-\d\d\d\d$/;
+
 const contactSchema = new Schema(
   {
     name: {
@@ -17,8 +20,14 @@ const contactSchema = new Schema(
     phone: {
       type: String,
       required: true,
+      match: phoneRegExp,
     },
     favorite: { type: Boolean, default: false },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
   },
   {
     versionKey: false,
@@ -43,6 +52,7 @@ const addSchema = Joi.object({
     .messages({
       "any.required": `missing required phone field`,
     })
+    .pattern(phoneRegExp)
     .required(),
   favorite: Joi.boolean().messages({
     "any.required": `missing required favorite field`,

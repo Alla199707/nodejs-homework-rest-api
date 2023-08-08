@@ -4,9 +4,10 @@ const validateBody = (schema) => {
   const func = (req, res, next) => {
     if (
       !req.body ||
-      Object.keys(req.body).length === 0
+      (Object.keys(req.body).length === 0 &&
+        req.method === "PUT")
     ) {
-      throw httpError(400, "missing field");
+      throw httpError(400, "missing fields");
     }
 
     const { error } = schema.validate(req.body);
