@@ -10,8 +10,8 @@ const {
   createHashPassword,
 } = require("../../units");
 const gravatar = require("gravatar");
-// const { nanoid } = require("nanoid");
-const { uuid } = require("uuid");
+
+const uuid = require("uuid").v4;
 
 const { BASE_URL } = process.env;
 
